@@ -1,0 +1,249 @@
+
+Karya Imtaq Jateng - Final Static Landing Page (Netlify-ready)
+=============================================================
+
+Files included:
+- index.html
+- style.css
+- script.js
+- favicon.ico (generated if logo present)
+- assets/ (logo images, mockups, program images)
+- README.txt
+
+How to deploy (Netlify - drag & drop):
+1. Go to https://app.netlify.com/drop and login (Google recommended).
+2. Drag & drop the unzipped folder (the folder containing index.html).
+3. Netlify will deploy and provide a URL like https://your-site.netlify.app.
+4. To change the site name to karyaimtaq, go to Site settings > Change site name.
+
+Notes & next steps:
+- The project references font 'TeX Gyre Pagella'. If you want exact match, upload the font file into assets/fonts/ and update @font-face in style.css.
+- Video is linked to Google Drive preview. If you prefer direct embed, replace the link with an iframe src using the Drive file ID: https://drive.google.com/file/d/FILE_ID/preview
+- If any asset not showing, replace or add images to assets/ and redeploy.
+
+
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', function(e){
+      var target = document.querySelector(this.getAttribute('href'));
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+});
+
+
+@font-face {
+  font-family: 'TeXGyrePagella';
+  src: local('TeX Gyre Pagella'), local('TeXGyrePagella');
+}
+:root{
+  --green:#116530;
+  --green-2:#1f7a3a;
+  --yellow:#f6c24f;
+  --muted:#6b7280;
+  --container:1100px;
+}
+*{box-sizing:border-box}
+body{font-family:TeXGyrePagella, Georgia, 'Times New Roman', serif; margin:0; color:#111827; background:#fff; line-height:1.5}
+.container{max-width:var(--container); margin:0 auto; padding:0 20px}
+.nav{background:var(--green); color:white; position:fixed; width:100%; z-index:40; top:0; left:0; box-shadow:0 3px 10px rgba(2,6,23,0.12)}
+.nav-inner{display:flex; align-items:center; justify-content:space-between; padding:10px 0}
+.brand{display:flex; align-items:center; gap:12px}
+.brand .logo{height:50px; width:auto}
+.brand-name{font-weight:800; color:white; letter-spacing:0.6px}
+.nav-links a{color:rgba(255,255,255,0.95); text-decoration:none; margin-left:14px; font-weight:600}
+.nav-links a:hover{color:var(--yellow)}
+
+.hero{height:80vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; color:white; padding-top:70px}
+.hero-bg{position:absolute; inset:0; background:linear-gradient(180deg, rgba(17,101,48,0.85), rgba(246,194,79,0.6)); background-image:url('assets/mockup.png'); background-size:cover; background-position:center; filter:brightness(0.85) saturate(0.9); z-index:-1}
+.hero-logo{height:120px; margin-bottom:12px}
+.hero h1{font-size:36px; margin:0; font-weight:800; text-transform:none; letter-spacing:1px}
+.moto{font-size:18px; opacity:0.95; max-width:900px; margin:8px auto 18px; color:#fff}
+.hero-cta{display:flex; gap:12px; justify-content:center}
+
+.btn{display:inline-block; text-decoration:none; padding:12px 18px; border-radius:10px; font-weight:700}
+.primary{background:var(--yellow); color:var(--green-2)}
+.outline{background:white; color:var(--green); border:2px solid rgba(0,0,0,0.06)}
+
+.section{padding:60px 0}
+.section.alt{background:#f7fff6}
+h2{color:var(--green); margin:0 0 18px; font-size:26px}
+.lead{color:#374151; margin-bottom:10px}
+.small{color:var(--muted); font-size:13px}
+
+.profile-grid{display:grid; grid-template-columns:1fr; gap:20px; align-items:start}
+@media(min-width:900px){.profile-grid{grid-template-columns:1fr 360px}}
+
+.profile-timeline{border-left:3px solid var(--green); padding-left:18px}
+.timeline-item{display:flex; gap:12px; margin-bottom:18px; align-items:flex-start}
+.timeline-item .year{font-weight:800; color:var(--green); min-width:60px}
+.timeline-item .desc{background:#fff; padding:8px 12px; border-radius:8px; box-shadow:0 6px 18px rgba(2,6,23,0.06)}
+
+.grid-3{display:grid; grid-template-columns:1fr; gap:18px}
+.grid-4{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+@media(min-width:768px){.grid-3{grid-template-columns:repeat(3,1fr)} .grid-4{grid-template-columns:repeat(4,1fr)}}
+
+.card{background:white; border-radius:12px; padding:12px; text-align:center; box-shadow:0 8px 20px rgba(2,6,23,0.06)}
+.card img{width:100%; height:160px; object-fit:cover; border-radius:10px; margin-bottom:8px}
+
+.testimonial{background:#ffffff; border-radius:12px; padding:18px; box-shadow:0 6px 18px rgba(2,6,23,0.06)}
+.testimonial cite{display:block; margin-top:12px; color:var(--green)}
+
+.videos{display:flex; gap:14px; flex-wrap:wrap; margin-top:12px}
+
+.footer{background:var(--green-2); color:white; padding:20px 0; margin-top:20px; text-align:center; font-size:13px}
+
+/* small tweaks for nav spacing when hero overlaps */
+body{padding-top:68px}
+
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Karya Imtaq Jateng | Umroh & Haji Khusus</title>
+  <meta name="description" content="Karya Imtaq Jateng — Umroh & Haji Khusus. Menyelamatkan ibadah umat dan menyelamatkan umat dalam beribadah." />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img src="assets/logo_full.png" alt="Karya Imtaq Jateng" class="logo" />
+        <span class="brand-name">KARYA IMTAQ JATENG</span>
+      </div>
+      <div class="nav-links">
+        <a href="#tentang">Tentang</a>
+        <a href="#profil">Profil</a>
+        <a href="#produk">Program</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <img src="assets/logo_full.png" class="hero-logo" alt="logo" />
+      <h1>Umroh & Haji Khusus Karya Imtaq Jateng</h1>
+      <p class="moto">Menyelamatkan ibadah umat dan menyelamatkan umat dalam beribadah.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="https://forms.gle/zvQcGKunHMqRno2i6" target="_blank">Daftar Sekarang</a>
+        <a class="btn outline" href="https://wa.me/6281128054222" target="_blank">Hubungi via WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="tentang" class="section">
+      <div class="container">
+        <h2>Tentang Kami</h2>
+        <p class="lead">Karya Imtaq Jawa Tengah — penyelenggara Umroh & Haji Khusus. Kami membimbing jamaah agar ibadah sesuai sunnah, dengan pelayanan profesional dan berizin resmi.</p>
+        <p class="small">Izin: PIHK No. 1010 Tahun 2019 • PPIU No. U89 Tahun 2022</p>
+      </div>
+    </section>
+
+    <section id="profil" class="section alt">
+      <div class="container">
+        <h2>Profil Perusahaan</h2>
+        <div class="profile-grid">
+          <div class="profile-text">
+            <p><strong>Visi:</strong> Menjadi penyelenggara perjalanan ibadah yang terpercaya dan membimbing jamaah untuk menjalankan ibadah sesuai sunnah.</p>
+            <p><strong>Misi:</strong> Menyediakan layanan ibadah berkualitas, pembimbing profesional, dan fasilitas yang menunjang kekhusyukan jamaah.</p>
+            <p><strong>Motto:</strong> Menyelamatkan ibadah umat dan menyelamatkan umat dalam beribadah.</p>
+            <p>Dokumen lengkap profil perusahaan: <a href="https://drive.google.com/file/d/1-_b7Vfkn9CJ8tG6jiDDrHfpGy2duEXgW/view?usp=drive_link" target="_blank">Lihat Profil Lengkap (PDF)</a></p>
+          </div>
+          <div class="profile-timeline">
+            <div class="timeline-item"><div class="year">2019</div><div class="desc"><strong>Izin PIHK</strong><div>PIHK No. 1010 Tahun 2019</div></div></div>
+            <div class="timeline-item"><div class="year">2022</div><div class="desc"><strong>Izin PPIU</strong><div>PPIU No. U89 Tahun 2022</div></div></div>
+            <div class="timeline-item"><div class="year">2023</div><div class="desc"><strong>Pembukaan Kantor Perwakilan Jateng</strong></div></div>
+            <div class="timeline-item"><div class="year">2024</div><div class="desc"><strong>Peluncuran Program Umroh & Haji Khusus</strong></div></div>
+            <div class="timeline-item"><div class="year">2025</div><div class="desc"><strong>Peluncuran Website Resmi</strong></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="produk" class="section">
+      <div class="container">
+        <h2>Program & Paket</h2>
+        <div class="grid-3">
+          <article class="card">
+            <img src="assets/haji_khusus.png" alt="Haji Khusus" onerror="this.style.display='none'"/>
+            <h3>Haji Khusus</h3>
+            <p>Pelayanan eksklusif dan fasilitas premium selama ibadah haji.</p>
+          </article>
+          <article class="card">
+            <img src="assets/haji_furoda.png" alt="Haji Furoda" onerror="this.style.display='none'"/>
+            <h3>Haji Furoda</h3>
+            <p>Program Haji Furoda (kuota terbatas) — cek brosur untuk jadwal.</p>
+          </article>
+          <article class="card">
+            <img src="assets/aqso.png" alt="Umroh Aqso/Amman" onerror="this.style.display='none'"/>
+            <h3>Umroh + Aqso / Amman</h3>
+            <p>Umroh dikombinasikan dengan kunjungan Aqso/Amman.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeri" class="section alt">
+      <div class="container">
+        <h2>Galeri & Video</h2>
+        <div class="grid-4">
+          <img src="assets/mockup.png" alt="Galeri 1" onerror="this.style.display='none'"/>
+          <img src="assets/haji_khusus.png" alt="Galeri 2" onerror="this.style.display='none'"/>
+          <img src="assets/haji_furoda.png" alt="Galeri 3" onerror="this.style.display='none'"/>
+          <img src="assets/aqso.png" alt="Galeri 4" onerror="this.style.display='none'"/>
+        </div>
+
+        <h3>Video Perjalanan</h3>
+        <p>Klik tombol di bawah untuk menonton video perjalanan kami (membuka di tab baru).</p>
+        <a class="btn primary" href="https://drive.google.com/file/d/1rb9tH13JfUlyOiTYoc33HQng4aMRKUaa/view?usp=drive_link" target="_blank">Tonton Perjalanan Kami</a>
+      </div>
+    </section>
+
+    <section id="testimoni" class="section">
+      <div class="container">
+        <h2>Testimoni Jamaah</h2>
+        <div class="grid-3">
+          <blockquote class="testimonial">“Pelayanan luar biasa! Saya merasa sangat terbantu dari awal hingga pulang ke tanah air.” <cite>- Ahmad</cite></blockquote>
+          <blockquote class="testimonial">“Pembimbingnya ramah dan profesional, fasilitas hotel juga sangat nyaman.” <cite>- Siti</cite></blockquote>
+          <blockquote class="testimonial">“Perjalanan spiritual yang tak terlupakan bersama Karya Imtaq Jateng.” <cite>- Budi</cite></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak" class="section">
+      <div class="container">
+        <h2>Kontak & Pendaftaran</h2>
+        <p>Alamat: Jl. Majapahit No. 101 A, Pandean Lamper, Gayamsari, Kota Semarang</p>
+        <p>Tel: 0811-2805-4222 • Email: info@karyaimtaqjateng.com</p>
+        <div class="contact-cta">
+          <a class="btn primary" href="https://wa.me/6281128054222" target="_blank">Hubungi via WhatsApp</a>
+          <a class="btn outline" id="daftar" href="https://forms.gle/zvQcGKunHMqRno2i6" target="_blank">Formulir Pendaftaran</a>
+        </div>
+
+        <div class="socials">
+          <a href="https://instagram.com/karyaimtaqjateng" target="_blank">Instagram</a>
+          <a href="https://facebook.com/karyaimtaqjateng" target="_blank">Facebook</a>
+          <a href="https://tiktok.com/@karyaimtaqjateng" target="_blank">TikTok</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Karya Imtaq Jateng. Semua Hak Dilindungi. PIHK No. 1010/2019 • PPIU No. U89/2022</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
